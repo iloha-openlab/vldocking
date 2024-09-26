@@ -1,5 +1,7 @@
 package com.vlsolutions.swing.sample;
 
+import com.vlsolutions.swing.docking.DockingConstants;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,6 +9,7 @@ public class MyEditorApp extends DockedApplication {
 
     public MyEditorApp() {
         desk.addDockable(editorPanel);
+        desk.split(editorPanel, treePanel, DockingConstants.SPLIT_LEFT);
         JPanel panel = new JPanel(new BorderLayout());
         JButton button = new JButton("OK");
         button.setName("OkButton");

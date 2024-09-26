@@ -19,7 +19,4 @@ public abstract class DockedApplication extends JFrame {
         return treePanel;
     }
 
-    public void notification() {
-        editorPanel.jsp.setNotification(true);
-    }
 }
