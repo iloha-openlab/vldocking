@@ -19,7 +19,7 @@ jobs:
         distribution: 'temurin'
     - uses: gradle/wrapper-validation-action@v2
       name: validate gradle wrapper
-    - uses: gradle/actions/setup-gradle@v3
+    - uses: gradle/actions/setup-gradle@v6
       name: Setup Gradle
       id: setup-gradle
     - name: Run gradle build
