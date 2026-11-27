@@ -13,12 +13,13 @@ import java.awt.Dimension;
 public class MyTextEditor extends JPanel implements Dockable {
     DockKey key = new DockKey("textEditor");
     JTextArea textArea = new JTextArea("A Text Area");
+    DockableScrollPane jsp;
 
     public MyTextEditor() {
         setName("myTextEditorPanel");
         setLayout(new BorderLayout());
         textArea.setName("myTextEditorTextArea");
-        JScrollPane jsp = new JScrollPane(textArea);
+        jsp = new DockableScrollPane(textArea);
         jsp.setName("myTextEditorScrollPane");
         jsp.setPreferredSize(new Dimension(300, 400));
         add(jsp, BorderLayout.CENTER);

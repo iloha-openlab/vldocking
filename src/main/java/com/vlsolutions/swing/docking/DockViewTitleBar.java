@@ -215,19 +215,23 @@ public class DockViewTitleBar extends JPanel implements DockableDragSource {
 
         public void propertyChange(PropertyChangeEvent e) {
             String pName = e.getPropertyName();
-            if (pName.equals(DockKey.PROPERTY_ICON)) {
+            switch (pName) {
+            case DockKey.PROPERTY_ICON:
                 titleLabel.setIcon((Icon) e.getNewValue());
-            } else if (pName.equals(DockKey.PROPERTY_NAME)) {
+                break;
+            case DockKey.PROPERTY_NAME:
                 titleLabel.setText((String) e.getNewValue());
                 revalidate();
-            } else if (pName.equals(DockKey.PROPERTY_TOOLTIP)) {
+                break;
+            case DockKey.PROPERTY_TOOLTIP:
                 setToolTipText((String) e.getNewValue());
-            } else if (pName.equals(DockKey.PROPERTY_NOTIFICATION)) {
+                break;
+            case DockKey.PROPERTY_NOTIFICATION:
                 // attract user attention
-                boolean isOn = ((Boolean) e.getNewValue()).booleanValue();
+                boolean isOn = (Boolean) e.getNewValue();
                 if (isOn && !isActive()) {
                     if (notificationTimer == null) {
-                        notificationTimer = new javax.swing.Timer(1000, new ActionListener() {
+                        notificationTimer = new Timer(1000, new ActionListener() {
 
                             public void actionPerformed(ActionEvent actionEvent) {
                                 setNotification(!isNotification);
@@ -236,6 +240,12 @@ public class DockViewTitleBar extends JPanel implements DockableDragSource {
                                     if (blinkCount >= MAX_BLINKS) {
                                         blinkCount = 0;
                                         notificationTimer.stop(); // enough blinking
+                                        if (target != null) {
+                                            DockKey k = target.getDockKey();
+                                            if (k != null) {
+                                                k.setNotification(false);
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -249,6 +259,7 @@ public class DockViewTitleBar extends JPanel implements DockableDragSource {
                     }
                     setNotification(false);
                 }
+                break;
             }
             /*
              * else if (pName.equals(DockKey.PROPERTY_DOCKABLE_STATE)){

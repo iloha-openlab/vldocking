@@ -18,4 +18,5 @@ public abstract class DockedApplication extends JFrame {
     public MyTree getTreePanel() {
         return treePanel;
     }
+
 }
