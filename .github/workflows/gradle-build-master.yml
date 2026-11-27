@@ -26,7 +26,7 @@ jobs:
       run: xvfb-run -a --server-args='-screen 0, 1024x768x24' ./gradlew -PenvIsCi --scan build
       id: gradle
     - name: "Add Build Scan URL as PR comment"
-      uses: actions/github-script@v7
+      uses: actions/github-script@v9
       if: github.event_name == 'pull_request' && failure()
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
